@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import UserIndex from '@views/user/Index.vue'
+import ManageIndex from '@views/manage/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -11,12 +13,43 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/login',
+    name: 'UserIndex',
+    component: UserIndex
+  },
+  {
+    path: '/manage',
+    name: 'ManageIndex',
+    meta: {
+      title: '管理系统'
+    },
+    component: ManageIndex,
+    children: [
+      {
+        path: 'personal',
+        name: 'PersonalCenter',
+        meta: {
+          title: '个人中心'
+        },
+        component: () => import('@views/user/PersonalCenter.vue')
+      },
+      {
+        path: 'user',
+        name: 'User',
+        meta: {
+          title: '用户管理'
+        },
+        component: () => import('@views/manage/User.vue')
+      },
+      {
+        path: 'instrument',
+        name: 'InstrumentTest',
+        meta: {
+          title: '储物柜管理'
+        },
+        component: () => import('@views/manage/InstrumentTest.vue')
+      }
+    ]
   }
 ]
 

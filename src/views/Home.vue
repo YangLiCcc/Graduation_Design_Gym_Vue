@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home-container">
+    <div class="home-header">
+      <HomeHeader />
+    </div>
+    <div class="home-main">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import HomeHeader from '@components/home/HomeHeader.vue'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    HomeHeader
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.home-header {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+}
+</style>
